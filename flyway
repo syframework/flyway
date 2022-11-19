@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 $options = getopt('c:s:t:', ['conf:', 'sql:', 'task:']);
