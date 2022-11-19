@@ -1,0 +1,12 @@
+{
+	"name": "sy/flyway",
+	"description": "Utility PHP script for running Flyway on a sy/project",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Syone",
+			"email": "syone7@gmail.com"
+		}
+	]
+}
