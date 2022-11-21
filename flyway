@@ -33,5 +33,7 @@ if (!$db) {
 	exit(3);
 }
 
-$cmd = 'docker pull flyway/flyway:latest-alpine && docker run -it --network container:' . $db['host'] . ' --rm -v ' . realpath($sql) . ':/flyway/sql flyway/flyway:latest-alpine -url=jdbc:mysql://' . $db['host'] . ':' . $db['port'] . ' -user=' . $db['username'] . ' -password=' . $db['password'] . ' -schemas="' . $db['dbname'] . '" ' . $task;
+$sudo = trim(exec('id -nG "$USER" | grep -qw docker && echo sudo'));
+
+$cmd = $sudo . ' docker run --pull always --network container:' . $db['host'] . ' --rm -v ' . realpath($sql) . ':/flyway/sql flyway/flyway:latest-alpine -url=jdbc:mysql://' . $db['host'] . ':' . $db['port'] . ' -user=' . $db['username'] . ' -password=' . $db['password'] . ' -schemas="' . $db['dbname'] . '" ' . $task;
 passthru($cmd);
