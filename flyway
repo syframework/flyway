@@ -17,12 +17,12 @@ if (is_null($sql)) {
 }
 
 if (!file_exists($conf)) {
-	echo 'INI file not found!' . PHP_EOL;
+	echo 'INI file not found: ' . $conf . PHP_EOL;
 	exit(2);
 }
 
 if (!file_exists($sql)) {
-	echo 'SQL directory not found!' . PHP_EOL;
+	echo 'SQL directory not found: ' . $sql . PHP_EOL;
 	exit(2);
 }
 
