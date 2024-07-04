@@ -38,5 +38,5 @@ $sudo = trim(exec('id -nG "$USER" | grep -qw docker && echo sudo'));
 
 $network = system("$sudo docker container inspect -f '{{.State.Running}}' " . $db['host']) === 'true' ? '--network container:' . $db['host'] : '';
 
-$cmd = $sudo . ' docker run --pull always ' . $network . ' --rm -v ' . realpath($sql) . ':/flyway/sql flyway/flyway:latest -url=jdbc:mysql://' . $db['host'] . ':' . $db['port'] . ' -user=' . escapeshellarg($db['username']) . ' -password=' . escapeshellarg($db['password']) . ' -schemas=' . escapeshellarg($db['dbname']) . ' ' . $args . ' ' . $task;
+$cmd = $sudo . ' docker run --pull always ' . $network . ' --rm -v ' . realpath($sql) . ':/flyway/sql flyway/flyway:latest -url=jdbc:mysql://' . $db['host'] . ':' . $db['port'] . '?allowPublicKeyRetrieval=true -user=' . escapeshellarg($db['username']) . ' -password=' . escapeshellarg($db['password']) . ' -schemas=' . escapeshellarg($db['dbname']) . ' ' . $args . ' ' . $task;
 passthru($cmd);
